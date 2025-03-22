@@ -87,4 +87,4 @@ workflow.add_conditional_edges(
 
 workflow.add_edge("tools", "agent")
 
-assistant_ui_graph = workflow.compile()
+crackedd_graph = workflow.compile()

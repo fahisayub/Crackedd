@@ -20,7 +20,7 @@ This project showcases:
 ## Project Structure
 
 ```
-assistant-ui-langgraph-fastapi/
+crackedd/
 ├── backend/         # FastAPI + assistant-stream + LangGraph server
 └── frontend/        # Next.js + assistant-ui client
 ```

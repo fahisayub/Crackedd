@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "backend"
+name = "crackedd-backend"
 version = "0.1.0"
-description = ""
+description = "Backend for Crackedd - an AI platform that connects to organization tools and provides actionable insights"
 authors = ["Hoang Le"]
 readme = "README.md"
 packages = [

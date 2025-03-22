@@ -26,7 +26,7 @@ export default function Home() {
 
 function Assistant() {
   // this is a frontend system prompt that will be made available to the langgraph agent
-  useAssistantInstructions("Your name is assistant-ui.");
+  useAssistantInstructions("Your name is Crackedd. You are an AI platform that connects to organization's tools, aggregates siloed data, and turns it into searchable, actionable insights.");
 
   // this is an frontend function that will be made available to the langgraph agent
   useAssistantTool({
