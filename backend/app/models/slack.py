@@ -5,24 +5,29 @@ Pydantic models for Slack API data structures.
 
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+import os
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 class SlackCredentialsSchema(BaseModel):
     """Schema for Slack API credentials."""
-    bot_token: str = Field(..., description="Bot User OAuth Token from Slack")
-    app_token: Optional[str] = Field(None, description="App-level token for advanced features")
-    signing_secret: Optional[str] = Field(None, description="Signing secret for verifying requests")
-    client_id: Optional[str] = Field(None, description="Client ID for OAuth")
-    client_secret: Optional[str] = Field(None, description="Client Secret for OAuth")
+    bot_token: str = Field(default=os.getenv("SLACK_BOT_TOKEN", ""), description="Bot User OAuth Token from Slack")
+    app_token: Optional[str] = Field(default=os.getenv("SLACK_APP_TOKEN", None), description="App-level token for advanced features")
+    signing_secret: Optional[str] = Field(default=os.getenv("SLACK_SIGNING_SECRET", None), description="Signing secret for verifying requests")
+    client_id: Optional[str] = Field(default=os.getenv("SLACK_CLIENT_ID", None), description="Client ID for OAuth")
+    client_secret: Optional[str] = Field(default=os.getenv("SLACK_CLIENT_SECRET", None), description="Client Secret for OAuth")
     
     class Config:
         schema_extra = {
             "example": {
-                "bot_token": "xoxb-EXAMPLE-BOT-TOKEN-NOT-REAL",
-                "app_token": "xapp-EXAMPLE-APP-TOKEN-NOT-REAL",
-                "signing_secret": "EXAMPLE-SIGNING-SECRET-NOT-REAL",
-                "client_id": "EXAMPLE-CLIENT-ID-NOT-REAL",
-                "client_secret": "EXAMPLE-CLIENT-SECRET-NOT-REAL"
+                "bot_token": "",
+                "app_token": "",
+                "signing_secret": "",
+                "client_id": "",
+                "client_secret": ""
             }
         }
 
