@@ -9,6 +9,7 @@ from typing import Dict, List, Any, Optional
 from datetime import datetime
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
+from dotenv import load_dotenv
 
 from ..models.slack import (
     SlackChannelSchema,
@@ -20,6 +21,9 @@ from ..models.slack import (
 )
 from ..core.errors import IntegrationError
 
+# Load environment variables
+load_dotenv()
+
 logger = logging.getLogger(__name__)
 
 class SlackIntegrationService:
@@ -27,6 +31,22 @@ class SlackIntegrationService:
     
     def __init__(self):
         self.clients: Dict[str, WebClient] = {}
+        
+        # If default credentials are provided in environment, initialize a default client
+        default_bot_token = os.environ.get("SLACK_BOT_TOKEN")
+        if default_bot_token:
+            try:
+                default_credentials = SlackCredentialsSchema(
+                    bot_token=default_bot_token,
+                    app_token=os.environ.get("SLACK_APP_TOKEN"),
+                    signing_secret=os.environ.get("SLACK_SIGNING_SECRET"),
+                    client_id=os.environ.get("SLACK_CLIENT_ID"),
+                    client_secret=os.environ.get("SLACK_CLIENT_SECRET")
+                )
+                self.register_workspace(default_credentials)
+                logger.info("Initialized default Slack client from environment variables")
+            except Exception as e:
+                logger.warning(f"Failed to initialize default Slack client: {e}")
         
     def register_workspace(self, credentials: SlackCredentialsSchema) -> str:
         """

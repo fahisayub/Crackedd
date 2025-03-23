@@ -18,11 +18,11 @@ class SlackCredentialsSchema(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "bot_token": "xoxb-123456789012-1234567890123-abcdefghijklmnopqrstuvwx",
-                "app_token": "xapp-1-ABCDEF-123456789012-abcdefghijklmnopqrstuvwxyz",
-                "signing_secret": "abcdef1234567890abcdef1234567890",
-                "client_id": "1234567890.1234567890",
-                "client_secret": "abcdefghijklmnopqrstuvwx"
+                "bot_token": "xoxb-EXAMPLE-BOT-TOKEN-NOT-REAL",
+                "app_token": "xapp-EXAMPLE-APP-TOKEN-NOT-REAL",
+                "signing_secret": "EXAMPLE-SIGNING-SECRET-NOT-REAL",
+                "client_id": "EXAMPLE-CLIENT-ID-NOT-REAL",
+                "client_secret": "EXAMPLE-CLIENT-SECRET-NOT-REAL"
             }
         }
 
